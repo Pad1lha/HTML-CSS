@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cursos Baratos É Aqui!</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #3df89a, #06c988);
+      color: rgba(7, 7, 7, 0.89);
+    }
+    .welcome-text {
+      text-align: center;
+      padding: 50px;
+      background: rgba(255, 255, 255, 0.8);
+      position: relative;
+      margin-bottom: 20px; /* Espaço para a navbar */
+    }
+    .welcome-text h1 {
+      margin: 0;
+      font-size: 3em;
+      color: #333;
+    }
+    .navbar {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+    }
+    .navbar-brand {
+      margin-right: auto;
+    }
+    .navbar-nav .nav-item {
+      margin-left: 15px;
+    }
+    .navbar-nav .nav-link {
+      color: #333;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #00f2fe;
+    }
+    .content {
+      padding: 20px;
+      text-align: center;
+    }
+    .content p {
+      font-size: 1.5em;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 300px;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 20px;
+    }
+    .card-content h3 {
+      margin: 0;
+      font-size: 1.5em;
+      color: #333;
+    }
+    .card-content p {
+      color: #666;
+      margin: 10px 0;
+    }
+    .card-content a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #4facfe;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+    .card-content a:hover {
+      background: #00f2fe;
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-text">
+    <h1>Bem-vindo ao Nosso Site de Cursos</h1>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="trabalho_desweb.png" alt="Logo Barata" class="logo" style="width: 150px; height: 140px; border-radius: 50%;">
+    </a>
+    <div class="navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Cursos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contato</a>
+        </li>
+      </ul>
+      <a href="login.html" class="nav-link">Login</a>
+    </div>
+  </nav>
+  <div class="content">
+    <p>Oferecemos os melhores cursos online para você se especializar!</p>
+    <div class="cards">
+      <div class="card">
+        <img src="curso1.png" alt="Curso 1">
+        <div class="card-content">
+          <h3>Curso de Programação</h3>
+          <p>Aprenda as principais linguagens de programação.</p>
+          <a href="#">Saiba Mais</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="curso2.png" alt="Curso 2">
+        <div class="card-content">
+          <h3>Curso de Design Gráfico</h3>
+          <p>Domine as ferramentas de design e crie projetos incríveis.</p>
+          <a href="#">Saiba Mais</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="curso3.png" alt="Curso 3">
+        <div class="card-content">
+          <h3>Curso de Marketing Digital</h3>
+          <p>Aprenda estratégias de marketing para alavancar seu negócio.</p>
+          <a href="#">Saiba Mais</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
