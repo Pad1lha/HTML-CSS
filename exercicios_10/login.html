@@ -49,12 +49,33 @@
       .btn-submit:hover {
         background: #00f2fe;
       }
+      .success-message {
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+      }
+      .success-message p {
+        font-size: 18px;
+        color: green;
+        margin-bottom: 15px;
+      }
+      .btn-home {
+        padding: 10px 20px;
+        background: #06c988;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .btn-home:hover {
+        background: #00b377;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <h2>Login</h2>
-      <form>
+      <form id="login-form">
         <div class="form-group">
           <label for="first-name">Nome</label>
           <input type="text" id="first-name" name="first-name" required>
@@ -86,4 +107,28 @@
         <div class="form-group">
           <label for="course">Curso</label>
           <select id="course" name="course" required>
-            <option value
+            <option value="">Selecione um curso</option>
+            <option value="programacao">Curso De Programação</option>
+            <option value="design">Cursos De Design</option>
+            <option value="marketing">Cursos de Marketing Digital</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">Enviar</button>
+      </form>
+      
+      <div class="success-message">
+        <p>Seu login foi bem sucedido!</p>
+        <button class="btn-home" onclick="window.location.href='index.html'">Voltar à tela inicial</button>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        document.getElementById('login-form').style.display = 'none';
+        document.querySelector('.success-message').style.display = 'block';
+      });
+    </script>
+  </body>
+</html>

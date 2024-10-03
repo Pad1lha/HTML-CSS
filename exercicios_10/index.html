@@ -17,7 +17,7 @@
       padding: 50px;
       background: rgba(255, 255, 255, 0.8);
       position: relative;
-      margin-bottom: 20px; /* Espaço para a navbar */
+      margin-bottom: 20px; 
     }
     .welcome-text h1 {
       margin: 0;
@@ -27,18 +27,43 @@
     .navbar {
       background: rgba(255, 255, 255, 0.8);
       padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .navbar-brand {
-      margin-right: auto;
+      margin-right: 20px;
+    }
+    .navbar-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
     }
     .navbar-nav .nav-item {
       margin-left: 15px;
     }
     .navbar-nav .nav-link {
       color: #333;
+      font-size: 1.2em;
+      padding: 10px 15px;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
     .navbar-nav .nav-link:hover {
       color: #00f2fe;
+      transform: scale(1.1);
+    }
+    .login-link {
+      font-size: 1.2em;
+      background-color: #4facfe;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .login-link:hover {
+      background-color: #00f2fe;
+      transform: scale(1.05);
     }
     .content {
       padding: 20px;
@@ -89,8 +114,60 @@
       text-decoration: none;
       border-radius: 5px;
       transition: background 0.2s;
+      cursor: pointer;
     }
     .card-content a:hover {
+      background: #00f2fe;
+    }
+
+    .contact-card {
+      position: fixed;
+      right: -250px;
+      top: 100px;
+      width: 250px;
+      background-color: #f4f4f4;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+    }
+    .contact-card.open {
+      right: 0;
+    }
+
+    .course-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .course-modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 400px;
+      text-align: center;
+    }
+    .course-modal-content h3 {
+      margin-bottom: 10px;
+    }
+    .course-modal-content p {
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+    .course-modal-close {
+      background: #4facfe;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .course-modal-close:hover {
       background: #00f2fe;
     }
   </style>
@@ -99,53 +176,122 @@
   <div class="welcome-text">
     <h1>Bem-vindo ao Nosso Site de Cursos</h1>
   </div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="#">
       <img src="trabalho_desweb.png" alt="Logo Barata" class="logo" style="width: 150px; height: 140px; border-radius: 50%;">
     </a>
     <div class="navbar-collapse">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="#" id="home-btn">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Cursos</a>
+          <a class="nav-link" href="#" id="courses-btn">Cursos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contato</a>
+          <a class="nav-link" href="#" id="contact-btn">Contato</a>
         </li>
       </ul>
-      <a href="login.html" class="nav-link">Login</a>
+      <a href="login.html" class="login-link">Login</a>
     </div>
   </nav>
+
   <div class="content">
     <p>Oferecemos os melhores cursos online para você se especializar!</p>
-    <div class="cards">
+    <div id="courses-section" class="cards">
       <div class="card">
-        <img src="curso1.png" alt="Curso 1">
+        <img src="curso1.png" alt="Curso de Programação">
         <div class="card-content">
           <h3>Curso de Programação</h3>
           <p>Aprenda as principais linguagens de programação.</p>
-          <a href="#">Saiba Mais</a>
+          <a class="saiba-mais" data-curso="programacao">Saiba Mais</a>
         </div>
       </div>
       <div class="card">
-        <img src="curso2.png" alt="Curso 2">
+        <img src="curso2.png" alt="Curso de Design Gráfico">
         <div class="card-content">
           <h3>Curso de Design Gráfico</h3>
           <p>Domine as ferramentas de design e crie projetos incríveis.</p>
-          <a href="#">Saiba Mais</a>
+          <a class="saiba-mais" data-curso="design">Saiba Mais</a>
         </div>
       </div>
       <div class="card">
-        <img src="curso3.png" alt="Curso 3">
+        <img src="curso3.png" alt="Curso de Marketing Digital">
         <div class="card-content">
           <h3>Curso de Marketing Digital</h3>
           <p>Aprenda estratégias de marketing para alavancar seu negócio.</p>
-          <a href="#">Saiba Mais</a>
+          <a class="saiba-mais" data-curso="marketing">Saiba Mais</a>
         </div>
       </div>
     </div>
   </div>
+
+  <div id="course-modal" class="course-modal">
+    <div class="course-modal-content">
+      <h3 id="course-title"></h3>
+      <p id="course-description"></p>
+      <p><strong>Valor:</strong> <span id="course-value"></span></p>
+      <p><strong>Duração:</strong> <span id="course-duration"></span></p>
+      <button class="course-modal-close" id="close-modal-btn">Fechar</button>
+    </div>
+  </div>
+
+  <div id="contact-card" class="contact-card">
+    <h4>Contato</h4>
+    <p>Email: contato@cursosbaratos.com</p>
+    <p>Telefone: (11) 99999-9999</p>
+  </div>
+
+  <script>
+    document.getElementById('home-btn').addEventListener('click', function() {
+      location.reload();
+    });
+
+    document.getElementById('courses-btn').addEventListener('click', function() {
+      document.getElementById('courses-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('contact-btn').addEventListener('click', function() {
+      var contactCard = document.getElementById('contact-card');
+      contactCard.classList.toggle('open');
+    });
+
+    const courses = {
+      programacao: {
+        title: "Curso de Programação",
+        description: "Aprenda a programar nas linguagens mais populares, como Python, JavaScript e Java. Ideal para iniciantes e intermediários que desejam melhorar suas habilidades.",
+        value: "R$ 499,00",
+        duration: "6 meses"
+      },
+      design: {
+        title: "Curso de Design Gráfico",
+        description: "Domine ferramentas como Adobe Photoshop, Illustrator e InDesign para criar projetos gráficos profissionais e criativos.",
+        value: "R$ 350,00",
+        duration: "4 meses"
+      },
+      marketing: {
+        title: "Curso de Marketing Digital",
+        description: "Aprenda estratégias para aumentar a visibilidade de marcas e produtos no ambiente online, com foco em redes sociais e SEO.",
+        value: "R$ 399,00",
+        duration: "5 meses"
+      }
+    };
+
+    document.querySelectorAll('.saiba-mais').forEach(function(button) {
+      button.addEventListener('click', function() {
+        const courseKey = this.getAttribute('data-curso');
+        const course = courses[courseKey];
+        document.getElementById('course-title').innerText = course.title;
+        document.getElementById('course-description').innerText = course.description;
+        document.getElementById('course-value').innerText = course.value;
+        document.getElementById('course-duration').innerText = course.duration;
+        document.getElementById('course-modal').style.display = 'flex';
+      });
+    });
+
+    document.getElementById('close-modal-btn').addEventListener('click', function() {
+      document.getElementById('course-modal').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
