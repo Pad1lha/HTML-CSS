@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora TOP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .calculator {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            width: 280px;
+            background-color: white;
+        }
+        .calculator input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .calculator button {
+            width: 22%;
+            margin: 5px;
+            padding: 15px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            border: none;
+            background-color: #f1f1f1;
+        }
+        .calculator button:hover {
+            background-color: #ddd;
+        }
+        .calculator .row {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="row">
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button onclick="setOperation('/')">/</button>
+    </div>
+    <div class="row">
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button onclick="setOperation('*')">*</button>
+    </div>
+    <div class="row">
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button onclick="setOperation('-')">-</button>
+    </div>
+    <div class="row">
+        <button onclick="appendToDisplay('0')">0</button>
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="setOperation('+')">+</button>
+    </div>
+</div>
+
+<script>let currentInput = '';
+    let previousInput = '';
+    let operator = null;
+    
+    function appendToDisplay(value) {
+        if (currentInput.length < 10) {
+            currentInput += value;
+            updateDisplay();
+        }
+    }
+    
+    function updateDisplay() {
+        document.getElementById('display').value = currentInput || '0';
+    }
+    
+    function clearDisplay() {
+        currentInput = '';
+        previousInput = '';
+        operator = null;
+        updateDisplay();
+    }
+    
+    function setOperation(op) {
+        if (currentInput === '') return;
+        if (previousInput !== '') {
+            calculate();
+        }
+        operator = op;
+        previousInput = currentInput;
+        currentInput = '';
+    }
+    
+    function calculate() {
+        if (currentInput === '' || previousInput === '') return;
+    
+        const num1 = parseFloat(previousInput);
+        const num2 = parseFloat(currentInput);
+    
+        if (isNaN(num1) || isNaN(num2)) {
+            alert('Erro! Entrada inválida.');
+            return;
+        }
+    
+        let result;
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 === 0) {
+                    alert('Erro! Divisão por zero.');
+                    return;
+                }
+                result = num1 / num2;
+                break;
+            default:
+                return;
+        }
+    
+        currentInput = result.toString();
+        operator = null;
+        previousInput = '';
+        updateDisplay();
+    }
+    </script>
+</body>
+</html>
